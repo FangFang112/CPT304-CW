@@ -21,13 +21,7 @@ function initChart(chartEl) {
   ctx.lineWidth = 8;
 }
 
-/**
- * 在画布上绘制圆弧
- * @param {string} color
- * @param {number} ratio   0~1，表示占整圆的比例
- * @param {boolean} anticlockwise
- */
-function drawCircle(color, ratio, anticlockwise) {
+function drawCircle(color, startAngle, endAngle, anticlockwise) {
   if (!ctx || !canvas) return;
 
   ctx.strokeStyle = color;
@@ -36,18 +30,13 @@ function drawCircle(color, ratio, anticlockwise) {
     canvas.width / 2,
     canvas.height / 2,
     20,
-    0,
-    ratio * 2 * Math.PI,
+    startAngle,        // ✅ 明确指定起始角度
+    endAngle,
     anticlockwise
   );
   ctx.stroke();
 }
 
-/**
- * 根据收支更新饼图
- * @param {number} income
- * @param {number} outcome
- */
 function updateChart(income, outcome) {
   if (!ctx || !canvas) return;
 
@@ -56,10 +45,11 @@ function updateChart(income, outcome) {
   const total = income + outcome;
   const ratio = total === 0 ? 0.5 : income / total;
 
-  drawCircle("#FFF", ratio, false);
-  drawCircle("#F0624D", 1 - ratio, false);
-}
+  const incomeEnd = ratio * 2 * Math.PI;
 
+  drawCircle("#FFF",    0,         incomeEnd,           false); // 白色：0 → ratio
+  drawCircle("#F0624D", incomeEnd, 2 * Math.PI,         false); // 橙红：ratio → 1
+}
 // ============================================================
 // 浏览器自动初始化（仅在 <script> 加载时执行）
 // ============================================================
