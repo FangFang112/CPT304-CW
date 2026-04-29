@@ -21,7 +21,8 @@ function initChart(chartEl) {
   ctx.lineWidth = 8;
 }
 
-function drawCircle(color, startAngle, endAngle, anticlockwise) {
+// drawCircle 签名不动，保持原样
+function drawCircle(color, ratio, anticlockwise) {
   if (!ctx || !canvas) return;
 
   ctx.strokeStyle = color;
@@ -30,13 +31,14 @@ function drawCircle(color, startAngle, endAngle, anticlockwise) {
     canvas.width / 2,
     canvas.height / 2,
     20,
-    startAngle,        // ✅ 明确指定起始角度
-    endAngle,
+    0,
+    ratio * 2 * Math.PI,
     anticlockwise
   );
   ctx.stroke();
 }
 
+// 在 updateChart 里用 canvas rotation 来拼接两段弧
 function updateChart(income, outcome) {
   if (!ctx || !canvas) return;
 
@@ -45,10 +47,20 @@ function updateChart(income, outcome) {
   const total = income + outcome;
   const ratio = total === 0 ? 0.5 : income / total;
 
-  const incomeEnd = ratio * 2 * Math.PI;
+  // 画白色弧（从 0 开始，占 ratio）
+  drawCircle("#FFF", ratio, false);
 
-  drawCircle("#FFF",    0,         incomeEnd,           false); // 白色：0 → ratio
-  drawCircle("#F0624D", incomeEnd, 2 * Math.PI,         false); // 橙红：ratio → 1
+  // 旋转画布，让橙红色弧从白色弧结束处开始
+  const incomeAngle = ratio * 2 * Math.PI;
+  ctx.save();
+  ctx.translate(canvas.width / 2, canvas.height / 2);
+  ctx.rotate(incomeAngle);
+  ctx.translate(-canvas.width / 2, -canvas.height / 2);
+
+  // 画橙红色弧（在旋转后的坐标系里从 0 开始，占 1-ratio）
+  drawCircle("#F0624D", 1 - ratio, false);
+
+  ctx.restore();
 }
 // ============================================================
 // 浏览器自动初始化（仅在 <script> 加载时执行）
