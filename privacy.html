@@ -89,26 +89,26 @@
   transition: all 0.25s ease;
 }
 
-/* hover */
+
 .lang-switch button:hover {
   background: #007BFF;
   color: white;
   transform: translateY(-1px);
 }
 
-/* 点击 */
+
 .lang-switch button:active {
   transform: scale(0.96);
 }
   </style>
 
-  <!-- ✅ 引入 i18n -->
+
   <script src="i18n.js"></script>
 
 </head>
 <body>
 
-  <!-- 🌐 语言切换按钮 -->
+
   <div class="lang-switch">
     <button onclick="setLanguage('en')">EN</button>
     <button onclick="setLanguage('zh')">中文</button>
@@ -133,7 +133,7 @@
     <a href="index.html" class="back-link" id="back"></a>
   </div>
 
-  <!-- ✅ 动态填充文本 -->
+
   <script>
     function renderText() {
       document.getElementById("page-title").innerText = t("privacy.title");
