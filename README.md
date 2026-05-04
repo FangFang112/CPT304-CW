@@ -36,6 +36,20 @@ The Budget App was built using the following technologies and tools:
 - CSS3
 - JavaScript
 
+## Defect Fixes
+1. Fixed Height and Scroll for Income/Expense Lists: The Income and Expense list containers now have a fixed height with vertical scrolling enabled. This resolves the display issue when too many items are added, allowing users to scroll through the entire list without breaking the layout.
+
+1. Input Text Escaping for Security: All user inputs are now properly escaped to prevent cross-site scripting (XSS) attacks. This ensures that any potentially malicious script entered in input fields is treated as plain text and not executed, enhancing the app's security.
+
+1. Keyboard Navigation for Edit/Delete Buttons: The Edit and Delete buttons in the income and expense lists are now accessible via keyboard tab navigation. Users without a mouse or trackpad can use the Tab key to select and interact with these buttons, improving accessibility.
+
+1. Accessibility Labels for Input Fields: Added proper ARIA labels and semantic HTML tags to input fields and buttons. This improves screen reader compatibility, making the app more accessible to visually impaired users. Screen readers will now accurately announce the purpose of each interactive element.
+
+## Content Extensions
+1. Privacy Cookie Notice: Added a cookie consent banner that includes a link to the privacy policy page. The banner uses local storage to remember the user's acceptance, so it only appears on the first visit and won't show again once accepted.
+
+1. Language Toggle Feature: Added a language toggle button in the upper right corner that allows users to switch between English and Chinese interfaces. This makes the app more accessible to a wider, multilingual audience.
+
 ## Credits
 The Budget App tutorial was created by [aaramiss](https://samiraatech.github.io/Budget-app/).
 
