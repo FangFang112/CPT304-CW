@@ -1,6 +1,6 @@
 # Budget-App-JavaScript
 
-Welcome to the Budget App! This project is the result of following a comprehensive YouTube tutorial that guides you through building a budget management application from scratch. With this app, you can efficiently track your income, expenses, and overall budget, gaining better control of your financial situation.
+This project is based on a Budget App developed by following a comprehensive YouTube tutorial. The original application allows users to manage their personal finances by recording income, tracking expenses, and viewing their overall budget balance. As part of this coursework, we evaluated the app to identify usability, accessibility, and functionality issues. Four defects were found and successfully corrected to improve the quality and reliability of the application. In addition, we extended the app by adding a cookie page and a privacy page, allowing users to better understand how cookies and personal information are handled. These improvements make the application more complete, user-friendly, and suitable for real-world use.
 
 ## Demo
 You can check out the live demo of the Budget App here.
